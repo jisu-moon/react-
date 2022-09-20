@@ -9,7 +9,10 @@ function ExpenseForm({ setExpenses }: any) {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { title, amount, date } = newData;
+    if (title === '' || amount === 0 || date === '') return;
     setExpenses(newData);
+    setNewData({ title: '', amount: 0, date: '' });
     event.currentTarget.reset();
   };
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
