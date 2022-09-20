@@ -23,11 +23,7 @@ function ExpenseForm({ setExpenses }: any) {
       return {
         ...prev,
         [id]:
-          id === 'title'
-            ? value
-            : id === 'amount'
-            ? Number(value)
-            : new Date(value),
+          id === 'title' ? value : id === 'amount' ? +value : new Date(value),
       };
     });
   };
@@ -59,7 +55,7 @@ function ExpenseForm({ setExpenses }: any) {
         />
       </div>
       <div>
-        <button type='submit'>submit</button>
+        <button type='submit'>Add Expense</button>
       </div>
     </form>
   );
