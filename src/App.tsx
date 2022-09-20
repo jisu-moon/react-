@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import Expenses from './components/expenses/Expenses';
+import NewExpense from './components/newExpense/NewExpense';
+export interface IItems {
+  id: string;
+  title: string;
+  amount: number;
+  date: Date;
+}
 
 function App() {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -21,9 +29,16 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
+  const expensesHandler = (expense: IItems) => {
+    setExpenses(prev => {
+      expense.id = `e${prev.length + 1}`;
+      return [...prev, expense];
+    });
+  };
   return (
     <>
+      <NewExpense setExpenses={expense => expensesHandler(expense)} />
       <Expenses items={expenses} />
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { IItems } from '../../App';
 import ExpenseDate from './ExpenseDate';
-import { IItems } from './Expenses';
 
 interface IProps {
   item: IItems;
