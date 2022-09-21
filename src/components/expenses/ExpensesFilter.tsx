@@ -1,12 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
-
 interface IProps {
-  yearFilter: Dispatch<SetStateAction<string>>;
+  yearFliterHandler: (year: string) => void;
 }
 
-const ExpensesFilter = ({ yearFilter }: IProps) => {
+const ExpensesFilter = ({ yearFliterHandler }: IProps) => {
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    yearFilter(event.currentTarget.value);
+    yearFliterHandler(event.currentTarget.value);
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
