@@ -8,22 +8,20 @@ interface IProps {
 }
 
 function Expenses({ items }: IProps) {
-  const [itemsFilter, setItemsFilter] = useState(items);
+  const [filteredYear, setFilteredYear] = useState('all');
 
-  const yearFliterHandler = (year: string) => {
-    if (year === 'all') return setItemsFilter(items);
-    const filter = items.filter(item => year === item.date.getFullYear() + '');
-    setItemsFilter(filter);
+  const yearFliterHandler = (year: string) => setFilteredYear(year);
+  const filteredItems = () => {
+    if (filteredYear === 'all') return items;
+    return items.filter(item => filteredYear === item.date.getFullYear() + '');
   };
 
   return (
     <div className='Wrapper'>
       <ExpensesFilter yearFliterHandler={yearFliterHandler} />
-      {itemsFilter
-        ? itemsFilter.map(item => {
-            return <ExpenseItem item={item} key={item.id} />;
-          })
-        : null}
+      {filteredItems().map(item => (
+        <ExpenseItem item={item} key={item.id} />
+      ))}
     </div>
   );
 }

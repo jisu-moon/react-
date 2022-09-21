@@ -33,12 +33,12 @@ function App() {
   const expensesHandler = (expense: IItems) => {
     setExpenses(prev => {
       expense.id = `e${prev.length + 1}`;
-      return [...prev, expense];
+      return [expense, ...prev];
     });
   };
   return (
     <>
-      <NewExpense setExpenses={expense => expensesHandler(expense)} />
+      <NewExpense expensesHandler={expense => expensesHandler(expense)} />
       <Expenses items={expenses} />
     </>
   );

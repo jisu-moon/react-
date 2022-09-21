@@ -2,13 +2,13 @@ import { IItems } from '../../App';
 import ExpenseForm from './ExpenseForm';
 
 interface IProps {
-  setExpenses: (data: IItems) => void;
+  expensesHandler: (data: IItems) => void;
 }
 
-function NewExpense({ setExpenses }: IProps) {
+function NewExpense({ expensesHandler }: IProps) {
   return (
     <div className='wrapper'>
-      <ExpenseForm setExpenses={setExpenses} />
+      <ExpenseForm expensesHandler={expensesHandler} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ExpenseForm({ setExpenses }: any) {
+function ExpenseForm({ expensesHandler }: any) {
   const [newData, setNewData] = useState({
     title: '',
     amount: 0,
@@ -11,7 +11,7 @@ function ExpenseForm({ setExpenses }: any) {
     event.preventDefault();
     const { title, amount, date } = newData;
     if (title === '' || amount === 0 || date === '') return;
-    setExpenses(newData);
+    expensesHandler(newData);
     setNewData({ title: '', amount: 0, date: '' });
     event.currentTarget.reset();
   };
