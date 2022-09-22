@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
+import { IItems } from '../../App';
+import { uuidv4 } from '../../utils/utils';
 
-function ExpenseForm({ expensesHandler }: any) {
+interface IProps {
+  expensesHandler: (data: IItems) => void;
+  showHandler: (show: boolean) => void;
+}
+
+function ExpenseForm({ expensesHandler, showHandler }: IProps) {
   const [newData, setNewData] = useState({
     title: '',
     amount: 0,
-    date: '',
+    date: new Date(),
+    id: '',
   });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { title, amount, date } = newData;
-    if (title === '' || amount === 0 || date === '') return;
+    const { title, amount } = newData;
+    if (title === '' || amount === 0) return;
+    newData.id = uuidv4();
     expensesHandler(newData);
-    setNewData({ title: '', amount: 0, date: '' });
+    setNewData({ title: '', amount: 0, date: new Date(), id: '' });
     event.currentTarget.reset();
   };
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -27,6 +36,7 @@ function ExpenseForm({ expensesHandler }: any) {
       };
     });
   };
+  const onClick = () => showHandler(false);
 
   return (
     <form onSubmit={onSubmit}>
@@ -56,6 +66,9 @@ function ExpenseForm({ expensesHandler }: any) {
       </div>
       <div>
         <button type='submit'>Add Expense</button>
+        <button type='button' onClick={onClick}>
+          Cancel
+        </button>
       </div>
     </form>
   );

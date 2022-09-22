@@ -1,10 +1,10 @@
 interface IProps {
-  yearFliterHandler: (year: string) => void;
+  setFilteredYear: (year: string) => void;
 }
 
-const ExpensesFilter = ({ yearFliterHandler }: IProps) => {
+const ExpensesFilter = ({ setFilteredYear }: IProps) => {
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    yearFliterHandler(event.currentTarget.value);
+    setFilteredYear(event.currentTarget.value);
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>

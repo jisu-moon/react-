@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { IItems } from '../../App';
-import ExpenseItem from './ExpenseItem';
+import Wrapper from '../UI/Wrapper';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
 
 interface IProps {
   items: IItems[];
@@ -10,19 +11,16 @@ interface IProps {
 function Expenses({ items }: IProps) {
   const [filteredYear, setFilteredYear] = useState('all');
 
-  const yearFliterHandler = (year: string) => setFilteredYear(year);
-  const filteredItems = () => {
+  const filteredExpenses = () => {
     if (filteredYear === 'all') return items;
     return items.filter(item => filteredYear === item.date.getFullYear() + '');
   };
 
   return (
-    <div className='Wrapper'>
-      <ExpensesFilter yearFliterHandler={yearFliterHandler} />
-      {filteredItems().map(item => (
-        <ExpenseItem item={item} key={item.id} />
-      ))}
-    </div>
+    <Wrapper>
+      <ExpensesFilter setFilteredYear={setFilteredYear} />
+      <ExpensesList items={filteredExpenses} />
+    </Wrapper>
   );
 }
 export default Expenses;

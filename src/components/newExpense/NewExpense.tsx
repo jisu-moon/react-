@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { IItems } from '../../App';
+import Wrapper from '../UI/Wrapper';
 import ExpenseForm from './ExpenseForm';
 
 interface IProps {
@@ -6,10 +8,20 @@ interface IProps {
 }
 
 function NewExpense({ expensesHandler }: IProps) {
+  const [showForm, setShowForm] = useState(false);
+
+  const onClick = () => setShowForm(true);
   return (
-    <div className='wrapper'>
-      <ExpenseForm expensesHandler={expensesHandler} />
-    </div>
+    <Wrapper a='sdfs'>
+      {showForm ? (
+        <ExpenseForm
+          expensesHandler={expensesHandler}
+          showHandler={setShowForm}
+        />
+      ) : (
+        <button onClick={onClick}>Add New Expense</button>
+      )}
+    </Wrapper>
   );
 }
 
