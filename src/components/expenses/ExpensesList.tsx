@@ -1,17 +1,13 @@
-import { IItems } from '../../App';
 import ExpenseItem from './ExpenseItem';
+import { IFilterExpenses } from '../../types/expenses';
 
-interface IProps {
-  items: () => IItems[];
-}
-
-function ExpensesList({ items }: IProps) {
+function ExpensesList({ expenses }: IFilterExpenses) {
   return (
     <ul className='lists' style={{ padding: 0 }}>
-      {items().length === 0 ? (
+      {expenses().length === 0 ? (
         <div>No expenses found.</div>
       ) : (
-        items().map(item => <ExpenseItem item={item} key={item.id} />)
+        expenses().map(item => <ExpenseItem expense={item} key={item.id} />)
       )}
     </ul>
   );

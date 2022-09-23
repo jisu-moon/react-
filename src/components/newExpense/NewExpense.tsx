@@ -1,18 +1,14 @@
 import { useState } from 'react';
-import { IItems } from '../../App';
+import { IExpensesHandler } from '../../types/newExpense';
 import Wrapper from '../UI/Wrapper';
 import ExpenseForm from './ExpenseForm';
 
-interface IProps {
-  expensesHandler: (data: IItems) => void;
-}
-
-function NewExpense({ expensesHandler }: IProps) {
+function NewExpense({ expensesHandler }: IExpensesHandler) {
   const [showForm, setShowForm] = useState(false);
 
   const onClick = () => setShowForm(true);
   return (
-    <Wrapper a='sdfs'>
+    <Wrapper>
       {showForm ? (
         <ExpenseForm
           expensesHandler={expensesHandler}

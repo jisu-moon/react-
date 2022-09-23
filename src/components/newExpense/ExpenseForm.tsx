@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { IItems } from '../../App';
+import { IExpensesHandler } from '../../types/newExpense';
 import { uuidv4 } from '../../utils/utils';
 
-interface IProps {
-  expensesHandler: (data: IItems) => void;
-  showHandler: (show: boolean) => void;
-}
-
-function ExpenseForm({ expensesHandler, showHandler }: IProps) {
+function ExpenseForm({ expensesHandler, showHandler }: IExpensesHandler) {
   const [newData, setNewData] = useState({
     title: '',
     amount: 0,
@@ -36,7 +31,7 @@ function ExpenseForm({ expensesHandler, showHandler }: IProps) {
       };
     });
   };
-  const onClick = () => showHandler(false);
+  const onClick = () => showHandler?.(false);
 
   return (
     <form onSubmit={onSubmit}>

@@ -9,7 +9,7 @@ function Wrapper({ children, a }: IProps) {
   return (
     <div
       className='wrapper'
-      style={{ border: '1px solid red', marginBottom: '50px' }}
+      style={{ border: '1px solid red', marginBottom: '50px', padding: '20px' }}
     >
       {children}
     </div>

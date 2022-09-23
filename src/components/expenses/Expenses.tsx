@@ -1,25 +1,29 @@
 import { useState } from 'react';
-import { IItems } from '../../App';
+import { IExpense } from '../../types/expenses';
 import Wrapper from '../UI/Wrapper';
+import ExpensesChart from './ExpensesChart';
 import ExpensesFilter from './ExpensesFilter';
 import ExpensesList from './ExpensesList';
 
 interface IProps {
-  items: IItems[];
+  expenses: IExpense[];
 }
 
-function Expenses({ items }: IProps) {
-  const [filteredYear, setFilteredYear] = useState('all');
+function Expenses({ expenses }: IProps) {
+  const [filteredYear, setFilteredYear] = useState('2021');
 
   const filteredExpenses = () => {
-    if (filteredYear === 'all') return items;
-    return items.filter(item => filteredYear === item.date.getFullYear() + '');
+    if (filteredYear === 'all') return expenses;
+    return expenses.filter(
+      expense => filteredYear === expense.date.getFullYear() + '',
+    );
   };
 
   return (
     <Wrapper>
       <ExpensesFilter setFilteredYear={setFilteredYear} />
-      <ExpensesList items={filteredExpenses} />
+      <ExpensesChart expenses={filteredExpenses} />
+      <ExpensesList expenses={filteredExpenses} />
     </Wrapper>
   );
 }

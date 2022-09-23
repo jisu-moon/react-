@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { IItems } from '../../App';
+import { useState } from 'react';
+import { IExpense } from '../../types/expenses';
 import ExpenseDate from './ExpenseDate';
 
 interface IProps {
-  item: IItems;
+  expense: IExpense;
 }
 
-function ExpenseItem({ item }: IProps) {
-  const [title, setTitle] = useState(item.title);
+function ExpenseItem({ expense }: IProps) {
+  const [title, setTitle] = useState(expense.title);
   const buttonHandler = () => {
     setTitle('update');
   };
   return (
     <li className='card' style={{ border: '1px solid #000' }}>
-      <ExpenseDate date={item.date} />
+      <ExpenseDate date={expense.date} />
       <h2>{title}</h2>
-      <div className='price'>${item.amount}</div>
+      <div className='price'>${expense.amount}</div>
       <button onClick={buttonHandler}>Click</button>
     </li>
   );
